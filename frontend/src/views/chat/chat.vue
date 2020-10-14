@@ -56,7 +56,7 @@ export default{
   created () {
     const username = getUserName()
     if (!username) {
-      // 防止未登录
+      // 防止未登录 Prevent not logged in
       this.$router.push({path: '/login'})
     }
     this.name = username
@@ -65,11 +65,11 @@ export default{
   mounted () {
     this.container = document.querySelector('.chat-content')
     const that = this
-    // 初始化新的对话信息
+    // 初始化新的对话信息  Initialize new dialog information
     this.$store.dispatch('SetChatMsg')
     // 加载历史对话信息
     this.$store.dispatch('GetMessHistory')
-    // 自动滚动到底部
+    // 自动滚动到底部 Auto scroll to the bottom
     setTimeout(() => {
       this.$nextTick(() => {
         this.container.scrollTop = 10000
@@ -89,7 +89,7 @@ export default{
   },
   methods: {
     goback () {
-      // 返回时断开连接
+      // 返回时断开连接 Disconnect when returning
       this.$store.dispatch('SetWebSocket', null)
       this.$router.goBack()
     },
